@@ -32,7 +32,7 @@ class _Pedidos_clientePageState extends State<Pedidos_clientePage> {
       });
     } else {
       // Si no hay token, lo mandamos al login
-      context.go('/InicioSesion');
+      context.go('/Inicio_sesion');
     }
   }
 
