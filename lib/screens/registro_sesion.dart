@@ -13,7 +13,7 @@ class RegistroSesionPage extends StatefulWidget {
 }
 
 class _RegistroSesionPageState extends State<RegistroSesionPage> {
-  // CONTROLADORES
+ 
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
@@ -21,9 +21,9 @@ class _RegistroSesionPageState extends State<RegistroSesionPage> {
   final _authService = AuthService();
   bool _isLoading = false;
 
-  // FUNCIÓN DE REGISTRO
+
   void _handleRegister() async {
-    // Validación básica de contraseñas iguales
+   
     if (_passController.text != _confirmPassController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Las contraseñas no coinciden")),
@@ -31,7 +31,7 @@ class _RegistroSesionPageState extends State<RegistroSesionPage> {
       return;
     }
 
-    // Validación de campos vacíos
+    
     if (_nameController.text.isEmpty || _emailController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Por favor complete todos los campos")),
@@ -66,7 +66,7 @@ class _RegistroSesionPageState extends State<RegistroSesionPage> {
     }
   }
 
-  // --- COMPONENTES DE UI EXTRAÍDOS ---
+
 
   Widget _buildBackground() {
     return Stack(
@@ -113,14 +113,14 @@ class _RegistroSesionPageState extends State<RegistroSesionPage> {
     return Scaffold(
       body: Stack(
         children: [
-          _buildBackground(), // Ahora sí existe
+          _buildBackground(), 
           SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 children: [
                   const SizedBox(height: 25),
-                  _buildHeader(context), // Ahora sí existe
+                  _buildHeader(context), 
                   const SizedBox(height: 40),
                   const Text(
                     "REGISTRO",
@@ -176,7 +176,7 @@ class _RegistroSesionPageState extends State<RegistroSesionPage> {
                     imageUrl:
                         'https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/5179d6b3-aa3f-403b-8cb4-718850815472.png?w=80&h=80&fit=max&dpr=3&auto=format&q=50',
                     onPressed: () async {
-                      // 1. Mostrar un indicador de carga
+        
                       showDialog(
                         context: context,
                         barrierDismissible: false,
@@ -184,14 +184,14 @@ class _RegistroSesionPageState extends State<RegistroSesionPage> {
                             const Center(child: CircularProgressIndicator()),
                       );
 
-                      // 2. Llamar al servicio
+          
                       final googleService = GoogleAuthService();
                       bool success = await googleService.signInWithGoogle();
 
-                      // 3. Quitar el indicador de carga
+                      
                       if (mounted) Navigator.pop(context);
 
-                      // 4. Manejar el resultado
+                      
                       if (success) {
                         if (mounted) context.go("/Pedidos");
                       } else {

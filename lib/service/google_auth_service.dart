@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class GoogleAuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    serverClientId: kIsWeb ? null : '256042134973-ls542u6i43f57pni5dr3aa0t9gl1vnoj.apps.googleusercontent.com',
-    clientId: kIsWeb ? '256042134973-ls542u6i43f57pni5dr3aa0t9gl1vnoj.apps.googleusercontent.com' : null,
+    serverClientId: kIsWeb ? null : '',
+    clientId: kIsWeb ? '' : null,
   );
 
   final Dio _dio = Dio(BaseOptions(

@@ -78,32 +78,37 @@ class _MyHomePageState extends State<MyHomePage> {
                     const SizedBox(height: 20),
 
                     ButtonSocial(
-  text: "Continuar con Google",
-  imageUrl: 'https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/5179d6b3-aa3f-403b-8cb4-718850815472.png?w=80&h=80&fit=max&dpr=3&auto=format&q=50',
-  onPressed: () async {
-    // Mostramos un loading simple
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
-    );
+                      text: "Continuar con Google",
+                      imageUrl:
+                          'https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/5179d6b3-aa3f-403b-8cb4-718850815472.png?w=80&h=80&fit=max&dpr=3&auto=format&q=50',
+                      onPressed: () async {
+                        // Mostramos un loading simple
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) =>
+                              const Center(child: CircularProgressIndicator()),
+                        );
 
-    final googleService = GoogleAuthService();
-    bool success = await googleService.signInWithGoogle();
+                        final googleService = GoogleAuthService();
+                        bool success = await googleService.signInWithGoogle();
 
-    if (mounted) Navigator.pop(context); // Cerramos el loading
+                        if (mounted)
+                          Navigator.pop(context); // Cerramos el loading
 
-    if (success) {
-      if (mounted) context.go("/Pedidos");
-    } else {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Error al conectar con Google")),
-        );
-      }
-    }
-  },
-),
+                        if (success) {
+                          if (mounted) context.go("/Pedidos");
+                        } else {
+                          if (mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Error al conectar con Google"),
+                              ),
+                            );
+                          }
+                        }
+                      },
+                    ),
 
                     const Spacer(flex: 2),
                   ],
